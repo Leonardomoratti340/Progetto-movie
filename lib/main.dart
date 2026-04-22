@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
-
+import 'package:progetto_movie/viewmodels/movie_view_model.dart';
+import 'package:progetto_movie/views/home_view.dart';
+import 'package:provider/provider.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => MovieViewModel()),
+      ],
+      child: const MyApp(),
+    ) // MultiProvider
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +38,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomeView()
     );
   }
 }
