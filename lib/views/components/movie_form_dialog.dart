@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progetto_movie/models/movie.dart';
 import 'package:progetto_movie/viewmodels/movie_view_model.dart';
+import 'package:progetto_movie/views/components/custom_text_filed.dart';
 import 'package:provider/provider.dart';
 
 class MovieFromDialog extends StatefulWidget {
@@ -70,18 +71,16 @@ class _MyWidgetState extends State<MovieFromDialog> {
           key: _formKey,
           child: Column(
             children: [
-              TextFormField(
-                controller: _titleController,
-                decoration: const InputDecoration(labelText: "Titolo"),
-                validator: (value) => value == null || value.isEmpty
-                    ? "campo obbligatorio"
-                    : null,
-              ),
-              TextFormField(
-                controller: _durationController,
-                decoration: const InputDecoration(
-                  labelText: "durata in minuti",
+              CustomTextFiled(
+                controller: _titleController, 
+                label: "Titolo", 
+                keyboardType: TextInputType.text,
+                validator: (value) => value == null || value.isEmpty ? "campo obbligatorio"      : null,
                 ),
+
+              CustomTextFiled(
+                controller: _durationController, 
+                label: "Durata (in minuti)", 
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -92,7 +91,16 @@ class _MyWidgetState extends State<MovieFromDialog> {
                   }
                   return null;
                 },
-              ),
+                ),
+
+              // TextFormField(
+              //   controller: _durationController,
+              //   decoration: const InputDecoration(
+              //     labelText: "durata in minuti",
+              //   ),
+              
+              //   },
+              // ),
               TextFormField(
                 controller: _plotController,
                 decoration: const InputDecoration(labelText: "trama"),
